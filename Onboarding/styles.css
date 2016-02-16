@@ -19,7 +19,7 @@ time, mark, audio, video {
     margin: 0;
     padding: 0;
     border: 0;
-    font-size: 100%;
+    font-size: 100%;  
     font: inherit;
     vertical-align: baseline;
 }
@@ -87,6 +87,7 @@ h2{
 
 body {
     background-color: lightyellow;
+    min-width: 1002px;
 }
 
 #headerWrapper{
@@ -156,14 +157,16 @@ img.resize{
     padding: 10px;
     max-width: 600px;
     margin: 15px auto;
-    
+    float: justify;
+    min-width: 1002px;
 }
-
 #textunderpic{
     text-indent: 30px;
-    text-decoration: underline;
     font-weight: bold;
+
+
     
+
 }
 
 #subscribe {
@@ -186,7 +189,7 @@ img.resize{
 }
 
 #submit:hover{
-    background-color: lightyellow;
+    background-color: #C0C0C0;
 }
 
 

@@ -12,7 +12,7 @@
 		&nbsp;
 		</div>
 		&nbsp;
-		<p id="textunderpic">Learn more about Wanderlust stories around the world.</p>
+		<p id="textunderpic">Travelling. It leaves you speechless, then turns you into a storyteller. </p>
 		<p> </p>
 
 		&nbsp;
@@ -38,12 +38,14 @@
 			<div id="formWrapper">
 				<form action="#" id="info">
 					<label for="firstname">First Name</label>
-					<input type="text" id="firstname" maxlength="4" name="firstname" />
+					<input type="text" id="firstname" maxlength="40" name="firstname" />
 					<label for="lastname">Last Name</label>
-					<input type="text" id="lastname" maxlength="4" name="lastname" />
+					<input type="text" id="lastname" maxlength="40" name="lastname" />
 					<label for="email">Email Address</label>
 					<input id="email" name="email" />
-					<input type="submit" id="submit" name="Submit" />
+					<form>
+ 					 <input type="button" id="submit" value="Subscribe" onclick="msg()">
+					</form>
 				</form>
 			</div>
 
@@ -62,7 +64,9 @@
 					s.parentNode.insertBefore(wf, s);
 				})(); 
 
-
+				function msg() {
+  				  alert("Congratulations! You have successfully subscribed to our website!");
+					}
 
 
 			</script>
