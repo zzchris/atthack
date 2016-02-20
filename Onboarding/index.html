@@ -7,16 +7,18 @@
 	<link rel="stylesheet" href="styles.css" />
 </head>
 <body>
+
 	<div id="headerWrapper">
 		<h1>Wanderlust</h1>	
 		&nbsp;
-		</div>
-		&nbsp;
-		<p id="textunderpic">Travelling. It leaves you speechless, then turns you into a storyteller. </p>
-		<p> </p>
+	</div>
 
 		&nbsp;
-		<div class="piccontainer" style="height:320px;">
+		<p id="text2">Travelling. It leaves you speechless, then turns you into a storyteller. </p>
+		&nbsp;
+
+	<div id="piccontainer">
+		
 		<a href="http://shop.lonelyplanet.com/" class="pics"> 
 		<img id="wanderlust1" src='pics/wanderlust1.png' alt="wanderlust1" </a></a>
 
@@ -25,50 +27,84 @@
 
 		<a href="http://www.coastalliving.com/travel/top-10/top-10-exotic-beach-destinations" class="pics">
 		<img id="exotic" src='pics/exotic.jpg' alt="exotic"</a></a>
-		&nbsp;
-		</div>
 
-		
+		<a href="https://trips.furkot.com/?hl=en-US" class="pics">
+		<img id="roadtrip" src='pics/roadtrip.jpg' alt="roadtrip"</a></a>
 
-		&nbsp;
+		<a href="https://www.hotwire.com/theme/big-city.jsp" class="pics">
+		<img id="wanderlust6" src='pics/wanderlust6.jpg' alt="wanderlust6"</a></a>
+
+
+
+	</div>
+
+	<p id= "text3"> Please click on one of the following photos to guide you to our partner pages for further information! </p>
+	&nbsp;
 		<div id="bodyWrapper">
 
-			<h2 id="subscribe"> Please subscribe for more information about Wanderlust tours and events!</h2>
+			
 
 			<div id="formWrapper">
-				<form action="#" id="info">
-					<label for="firstname">First Name</label>
-					<input type="text" id="firstname" maxlength="40" name="firstname" />
-					<label for="lastname">Last Name</label>
-					<input type="text" id="lastname" maxlength="40" name="lastname" />
+			<h2 id="subscribe"> Subscribe for more information!</h2>
+			&nbsp;
+				<form action="" id="myform">
+					<label for="name">Name</label>
+					<input type="text" id="name" maxlength="40" name="name" placeholder= "John Smith"/>
 					<label for="email">Email Address</label>
-					<input id="email" name="email" />
+					<input type="email" id="email" name="email" placeholder="example@domain.com" pattern="^.+@.+$"/>
 					<form>
- 					 <input type="button" id="submit" value="Subscribe" onclick="msg()">
-					</form>
+ 					 <input type="button" id="subscribe1" value="Subscribe" onclick="buttonFunction()">
+ 					</form>
 				</form>
+
 			</div>
+		</div>
 
 
 
 			<script type="text/javascript">
-			
-				WebFontConfig = {
-					google: { families: [ 'Josefin+Sans::latin' ] }
-				};
-				(function() {
-					var wf = document.createElement('script');
-					wf.src = ('https:' == document.location.protocol ? 'https' : 'http') +
-					'://ajax.googleapis.com/ajax/libs/webfont/1/webfont.js';
-					wf.type = 'text/javascript';
-					wf.async = 'true';
-					var s = document.getElementsByTagName('script')[0];
-					s.parentNode.insertBefore(wf, s);
-				})(); 
 
-				function msg() {
-  				  alert("Congratulations! You have successfully subscribed to our website!");
-					}
+				var name = document.getElementById("name");
+				var email = document.getElementById("email");
+				var button1 = document.getElementById("subscribe1");
+
+				button1.addEventListener('click', function subscribe(){
+
+				var x = document.forms["myform"]["email"].value;
+				var mailformat = /^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$/; 
+				var y = document.forms["myform"]["name"].value;
+
+				if (x==null || x==""){
+
+					if (y==null || y==""){
+					alert ("Please enter your name!");
+					name.style.border="1pt solid red"; 
+
+				}
+				else {
+
+				}
+					
+					alert("Please enter your email!")
+					email.style.border="1pt solid red";
+				}
+				else if ( x.match(mailformat)) {
+					return true;
+				}
+
+				else {
+					alert("Thank you for subscribing to Wanderlust!")
+					document.getElementById("name").value = "";
+					document.getElementById("email").value = "";
+
+				}
+
+				
+
+
+				})
+
+			
 
  
 
