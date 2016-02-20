@@ -72,30 +72,14 @@
 				button1.addEventListener('click', function subscribe(){
 
 				var x = document.forms["myform"]["email"].value;
-				var mailformat = /^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$/; 
 				var y = document.forms["myform"]["name"].value;
 
 				
 				if (x==null || x==""){
 
-							if (y==null || y==""){
-							alert ("Please enter your name!");
-							name.style.border="1pt solid red"; 
-
-							}
-							else {
-
-							}
-
 					alert("Please enter your email!")
 					email.style.border="1pt solid red";
 				}
-
-
-				else if ( x.match(mailformat)) {
-					return true;
-				}
-
 
 
 				else {
@@ -106,7 +90,13 @@
 				}
 
 				
+				if (y==null || y==""){
+						alert ("Please enter your name!");
 
+						}
+						else {
+
+						}
 
 				})
 
