@@ -1,2 +1,2 @@
 A repository of the Production Problems for ITMD362: Human-Computer Interaction and Web Design. See http://ks4.us/hci
-# Project-1
+# Welcome to Khang's Project-1 for ITM 362! 
