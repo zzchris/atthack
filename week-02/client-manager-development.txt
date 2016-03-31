@@ -1,5 +1,5 @@
 # Production Problem 2: Establishing a client/manager-ready HCI development environment
-
+    
 ## The Problem
 
 When you show off work on your own computer to someone else (a boss, a client, a colleague, a professor), it’s not unlike inviting someone over to where you live. Most of us need to do some cleanup first. Our desktops and mobile devices  are weird places, where our professional work (email, projects) sit right next to our personal lives (messenger apps, Angry Birds, whatever).
