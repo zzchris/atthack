@@ -39,7 +39,7 @@ h1 {
     margin-top: 10px;
 }
 input[type="text"] {
-    padding: 10px;
+    padding: 5px;
     background-color:#2980B9;
     border: none;
     border-bottom: solid 2px #c9c9c9;
@@ -50,7 +50,7 @@ input[type="text"]:focus, input[type="text"].focus {
     border-bottom: solid 2px #969696;
 }
 .below {
-    padding-top:40px;
+    padding-top:90px;
     text-align: center;
 }
 #lines {
@@ -60,6 +60,7 @@ input[type="text"]:focus, input[type="text"].focus {
 }
 .header {
     height: 150px;
+    position: relative;
     /*background: linear-gradient(#EC7063, #A569BD);*/
     background: #5DADE2;
 }
@@ -77,6 +78,17 @@ input[type="text"]:focus, input[type="text"].focus {
 .notes, .settings, .recall, .definitions {
     
 }
+.logo {
+    position: absolute;
+    display:inline-block;
+    height:120px;
+    width:250px;
+    top:0;
+    left:0;
+    margin-left:490px;
+    margin-top:-30px;
+    
+}
 .notes {
     position:absolute;
     top:50%;
@@ -87,7 +99,7 @@ input[type="text"]:focus, input[type="text"].focus {
     margin-left:-30px;
 }
 .main {
-    
+    position: relative;
 }
 .footer {
     
