@@ -1,6 +1,6 @@
 var mysql      = require('mysql');
 var connection = mysql.createConnection({
-  host     : 'localhost',
+  host     : 'box1231.bluehost.com',
   user     : 'rojectsa_chris',
   password : 'babies12345',
   database : 'rojectsa_atthack'
@@ -8,10 +8,10 @@ var connection = mysql.createConnection({
 
 connection.connect();
 
-connection.query('SELECT asdf', function(err, rows, fields) {
+connection.query('DELETE asdf', function(err, rows, fields) {
   if (err) throw err;
 
-  console.log("Selected successfully.");
+  console.log("Deleted successfully.");
 });
 
 connection.end();
