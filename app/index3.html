@@ -1,0 +1,141 @@
+<!DOCTYPE HTML>
+<html>
+<head>
+
+
+
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link href="https://fonts.googleapis.com/css?family=Source+Serif+Pro" rel="stylesheet">
+	<link href="https://fonts.googleapis.com/css?family=Open+Sans+Condensed:300" rel="stylesheet">
+	<link href="https://fonts.googleapis.com/css?family=Poiret+One" rel="stylesheet">
+    <link href="css/bootstrap.min.css" rel="stylesheet">
+    <link href="css/screen2.css" rel="stylesheet">
+    <script src="http://ajax.googleapis.com/ajax/libs/jquery/2.1.1/jquery.min.js"></script>
+    	<script type="text/javascript">
+
+		var accessToken = "85c6fc038a894a32ac557028fc3569a9";
+		var baseUrl = "https://api.api.ai/v1/";
+
+		$(document).ready(function() {
+			$("#test").keypress(function(event) {
+				if (event.which == 13) {
+					event.preventDefault();
+					send();
+				}
+			});
+			$("#mic").click(function(event) {
+				switchRecognition();
+			});
+		});
+
+		var recognition;
+
+		function startRecognition() {
+			recognition = new webkitSpeechRecognition();
+			recognition.onstart = function(event) {
+				updateRec();
+			};
+			recognition.onresult = function(event) {
+				var text = "";
+			    for (var i = event.resultIndex; i < event.results.length; ++i) {
+			    	text += event.results[i][0].transcript;
+			    }
+			    setInput(text);
+				stopRecognition();
+			};
+			recognition.onend = function() {
+				stopRecognition();
+			};
+			recognition.lang = "en-US";
+			recognition.start();
+		}
+	
+		function stopRecognition() {
+			if (recognition) {
+				recognition.stop();
+				recognition = null;
+			}
+			updateRec();
+		}
+
+		function switchRecognition() {
+			if (recognition) {
+				stopRecognition();
+			} else {
+				startRecognition();
+			}
+		}
+
+		function setInput(text) {
+			$("#test").val(text);
+			send();
+		}
+
+		function updateRec() {
+			$("#rec").text(recognition ? "Stop" : "Speak");
+		}
+
+		function send() {
+			var text = $("#test").val();
+			$.ajax({
+				type: "POST",
+				url: baseUrl + "query/",
+				contentType: "application/json; charset=utf-8",
+				dataType: "json",
+				headers: {
+					"Authorization": "Bearer " + accessToken
+				},
+				data: JSON.stringify({ q: text, lang: "en" }),
+
+				success: function(data) {
+					setResponse(JSON.stringify(data, undefined, 2));
+				},
+				error: function() {
+					setResponse("Internal Server Error");
+				}
+			});
+			setResponse("Loading...");
+		}
+
+		function setResponse(val) {
+			$(".body").text(val);
+		}
+
+	</script>
+</head>
+    <body class="background">
+        <div class="sidebar">
+            <div class="notes text-center">NOTES</div>
+            <div class="settings text-center">SETTINGS</div>
+            <div class="recall text-center">RECALL</div>
+            <div class="definitions text-center">DEFINITIONS</div>
+        </div>
+       
+		<div class="header" data-spy="affix" data-offset-top="75">
+       <div class="container">
+     
+
+        	<div class="row">
+        	
+        		<div class="col-xs-4"><span style="color:#86999C" class=" pull-left pad-left glyphicon glyphicon-menu-hamburger" aria-hidden="true"></span></div>
+        		<div class="col-xs-4"><div class="logo"><img class="img-responsive" alt="Recall Logo" src="images/recalllogo.png"> </div></div>
+        		<div class="col-xs-4"> <span  style="color:#86999C" class=" pull-right pad-right glyphicon glyphicon-cog" aria-hidden="true"></span></div>
+        
+        	</div><!--close row-->
+    	</div><!--container-->
+    </div><!--header-->
+    
+<div> <p> iouhsflnsklfgfjslngjfdihkgyufdsbghdfjbsgifsdkjngkdfjsngsbfd
+dfjklbisfg</p></div>
+
+
+
+
+      	
+<div id="footer" class="footer navbar-fixed-bottom text-center"><input type="text" id="test" placeholder="Listening..."></input><img class="pull-right pad-right" src="images/microphone.png" id="mic"></span></div>
+       
+       <script src="js/bootstrap.min.js"></script>
+       <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
+    </body>
+<html>
+   

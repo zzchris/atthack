@@ -1,0 +1,124 @@
+<!DOCTYPE HTML>
+<html>
+<head>
+    <link href="style.css" rel="stylesheet">
+    <link href="blink.css" rel="stylesheet">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link href="https://fonts.googleapis.com/css?family=Source+Serif+Pro" rel="stylesheet">
+    <script src="http://ajax.googleapis.com/ajax/libs/jquery/2.1.1/jquery.min.js"></script>
+    	<script type="text/javascript">
+
+		var accessToken = "85c6fc038a894a32ac557028fc3569a9";
+		var baseUrl = "https://api.api.ai/v1/";
+
+		$(document).ready(function() {
+			$("#test").keypress(function(event) {
+				if (event.which == 13) {
+					event.preventDefault();
+					send();
+				}
+			});
+			$("#mic").click(function(event) {
+				switchRecognition();
+			});
+		});
+
+		var recognition;
+
+		function startRecognition() {
+			recognition = new webkitSpeechRecognition();
+			recognition.onstart = function(event) {
+				updateRec();
+			};
+			recognition.onresult = function(event) {
+				var text = "";
+			    for (var i = event.resultIndex; i < event.results.length; ++i) {
+			    	text += event.results[i][0].transcript;
+			    }
+			    setInput(text);
+				stopRecognition();
+			};
+			recognition.onend = function() {
+				stopRecognition();
+			};
+			recognition.lang = "en-US";
+			recognition.start();
+		}
+	
+		function stopRecognition() {
+			if (recognition) {
+				recognition.stop();
+				recognition = null;
+			}
+			updateRec();
+		}
+
+		function switchRecognition() {
+			if (recognition) {
+				stopRecognition();
+			} else {
+				startRecognition();
+			}
+		}
+
+		function setInput(text) {
+			$("#test").val(text);
+			send();
+		}
+
+		function updateRec() {
+			$("#rec").text(recognition ? "Stop" : "Speak");
+		}
+
+		function send() {
+			var text = $("#test").val();
+			$.ajax({
+				type: "POST",
+				url: baseUrl + "query/",
+				contentType: "application/json; charset=utf-8",
+				dataType: "json",
+				headers: {
+					"Authorization": "Bearer " + accessToken
+				},
+				data: JSON.stringify({ q: text, lang: "en" }),
+
+				success: function(data) {
+					setResponse(JSON.stringify(data, undefined, 2));
+				},
+				error: function() {
+					setResponse("Internal Server Error");
+				}
+			});
+			setResponse("Loading...");
+		}
+
+		function setResponse(val) {
+			$(".body").text(val);
+		}
+
+	</script>
+</head>
+    <body>
+        <div class="sidebar">
+            <div class="notes text-center">NOTES</div>
+            <div class="settings text-center">SETTINGS</div>
+            <div class="recall text-center">RECALL</div>
+            <div class="definitions text-center">DEFINITIONS</div>
+        </div>
+        <div class="main">
+            <div class="header">
+                <img src="images/recall%20logo.svg" class="pad-top text-center logo"></img>
+                <div class='below'>
+                    <img src="images/menu-icon.svg" id="lines">
+                    <input type="text" id="test" class="grey medium listening inline" placeholder="Ask away..."></input><!--<span class="blinking-cursor">|</span>-->
+                    <img src="images/microphone.png" id="mic">
+                </div>
+            </div>
+            <div class="body">
+            </div>
+            <div class="footer">
+            </div>
+        </div>
+    </body>
+<html>
+   
